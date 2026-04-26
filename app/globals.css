@@ -1,0 +1,123 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ═══════════════════════════════════════
+   DESIGN TOKENS — from V1 demo
+═══════════════════════════════════════ */
+:root {
+  --grain: url("data:image/svg+xml;utf8,<svg viewBox='0 0 240 240' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.08  0 0 0 0 0.07  0 0 0 0 0.05  0 0 0 0.45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    @apply bg-ivory text-ink font-body;
+    font-size: 18px;
+    line-height: 1.65;
+    overflow-x: hidden;
+  }
+
+  /* Paper grain overlay on everything */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: var(--grain);
+    background-size: 240px 240px;
+    opacity: 0.35;
+    mix-blend-mode: multiply;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  ::selection {
+    @apply bg-forest text-ivory;
+  }
+}
+
+@layer components {
+  .container-site {
+    width: min(1240px, 92%);
+    margin-inline: auto;
+  }
+
+  .script {
+    @apply font-script text-brass;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .display {
+    @apply font-display;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    line-height: 1.02;
+  }
+
+  .eyebrow {
+    @apply font-display text-moss italic;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+  }
+
+  .rule-line {
+    display: inline-block;
+    width: 52px;
+    height: 1px;
+    background: currentColor;
+    vertical-align: middle;
+    margin-right: 1rem;
+    opacity: 0.6;
+  }
+
+  .btn {
+    @apply font-display inline-flex items-center gap-2 uppercase transition-all rounded-sm;
+    font-size: 0.95rem;
+    letter-spacing: 0.2em;
+    padding: 1rem 2rem;
+    transition-duration: 350ms;
+  }
+
+  .btn-primary {
+    @apply bg-forest text-ivory border border-forest;
+  }
+
+  .btn-primary:hover {
+    @apply bg-ink border-ink -translate-y-0.5;
+    box-shadow: 0 8px 24px rgba(20, 17, 13, 0.18);
+  }
+
+  .btn-ghost {
+    @apply bg-transparent text-forest border border-forest;
+  }
+
+  .btn-ghost:hover {
+    @apply bg-forest text-ivory;
+  }
+
+  .paper-grain {
+    background-image: var(--grain);
+    background-size: 220px 220px;
+  }
+}
+
+/* ═══════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
