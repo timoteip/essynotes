@@ -144,6 +144,23 @@ function Newsletter() {
     }
   }
 
+  if (status === "sent") {
+    return (
+      <div
+        id="newsletter"
+        className="p-10 md:p-14 rounded-sm bg-cream text-ink border border-cocoa/15 flex flex-col items-center justify-center text-center min-h-[480px] animate-fade-in"
+      >
+        <span className="text-brass text-5xl mb-6 animate-scale-in">✦</span>
+        <h3 className="font-display font-light text-[clamp(2rem,3.5vw,2.8rem)] leading-[1.1] -tracking-tight">
+          Welcome <em className="italic">home.</em>
+        </h3>
+        <p className="mt-5 font-display italic text-ink/75 max-w-xs">
+          Check your inbox — a quiet letter from Estera will be waiting for you, twice a month.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div
       id="newsletter"
@@ -197,11 +214,7 @@ function Newsletter() {
           disabled={status === "sending"}
           className="mt-4 self-start font-display text-[0.9rem] tracking-widest uppercase px-8 py-4 rounded-sm bg-forest text-ivory hover:bg-ink hover:-translate-y-0.5 transition-all disabled:opacity-50"
         >
-          {status === "sending"
-            ? "Subscribing…"
-            : status === "sent"
-              ? "Welcome home ✦"
-              : "Join the Letter"}
+          {status === "sending" ? "Subscribing…" : "Join the Letter"}
         </button>
       </form>
     </div>
