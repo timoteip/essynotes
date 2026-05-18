@@ -1,5 +1,5 @@
 import { sanityClient } from "./sanity";
-import type { Video, Tool, Product } from "./types";
+import type { Video, Tool, Product, SiteSettings } from "./types";
 
 // ───────────────────────────────────────
 // VIDEOS (Sanity)
@@ -51,6 +51,27 @@ export async function getTools(): Promise<Tool[]> {
   } catch (err) {
     console.error("Sanity getTools error:", err);
     return MOCK_TOOLS;
+  }
+}
+
+// ───────────────────────────────────────
+// SITE SETTINGS (Sanity)
+// ───────────────────────────────────────
+export async function getSiteSettings(): Promise<SiteSettings> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return MOCK_SITE_SETTINGS;
+
+  try {
+    if (!sanityClient) return MOCK_SITE_SETTINGS;
+    const query = `*[_type == "siteSettings"][0]{
+      announceBar,
+      bioShort,
+      followerCounts
+    }`;
+    const result = await sanityClient.fetch<SiteSettings | null>(query);
+    return result ?? MOCK_SITE_SETTINGS;
+  } catch (err) {
+    console.error("Sanity getSiteSettings error:", err);
+    return MOCK_SITE_SETTINGS;
   }
 }
 
@@ -126,6 +147,14 @@ const MOCK_TOOLS: Tool[] = [
   { _id: "t7", name: "Blackwing 602", category: "Pencil", description: "Firm, dark, and elegant. The pencil for long reading sessions and quiet margin notes.", url: "#", symbol: "✎" },
   { _id: "t8", name: "Written Word", category: "Calligraphy", description: "Where I learned modern calligraphy. Their free starter session is the single best hour I've spent.", url: "#", symbol: "❈", ctaLabel: "Claim Free Session" },
 ];
+
+const MOCK_SITE_SETTINGS: SiteSettings = {
+  announceBar:
+    "New handwriting starter kit just dropped ✦ free shipping on orders over $40 ✦ welcome to the desk",
+  bioShort:
+    "I started essy notes in a small room with a stack of lined paper and a pen that leaked just enough to be charming. What began as a quiet journal became a corner of the internet where hundreds of thousands of people now come to slow down, write better, and find some stillness between the screens.",
+  followerCounts: { tiktok: "243K", instagram: "52K", youtube: "22K" },
+};
 
 const MOCK_PRODUCTS: Product[] = [
   { id: "1", name: "The Handwriting Starter", category: "Workbook · 48 pages", description: "From messy scrawl to steady lines in twenty-eight days. Printable, rewritable, made to be returned to.", priceDollars: 14, priceCents: 0, checkoutUrl: "#", badge: "Best Seller" },

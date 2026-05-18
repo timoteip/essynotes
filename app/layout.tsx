@@ -4,6 +4,7 @@ import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import Announce from "@/components/Announce";
+import { getSiteSettings } from "@/lib/data";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -52,15 +53,16 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const settings = await getSiteSettings();
   return (
     <html lang="en" className={`${cormorant.variable} ${ebGaramond.variable} ${italianno.variable}`}>
       <body>
-        <Announce />
+        <Announce text={settings.announceBar} />
         <Nav />
         <main>{children}</main>
         <Footer />

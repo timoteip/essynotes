@@ -45,6 +45,20 @@ function BrandInquiry() {
     }
   }
 
+  if (status === "sent") {
+    return (
+      <div className="relative p-10 md:p-14 rounded-sm overflow-hidden bg-forest text-parchment flex flex-col items-center justify-center text-center min-h-[480px] animate-fade-in">
+        <span className="text-brass-light text-5xl mb-6 animate-scale-in">✦</span>
+        <h3 className="font-display font-light text-[clamp(2rem,3.5vw,2.8rem)] leading-[1.1] -tracking-tight text-ivory">
+          Your note is <em className="italic text-brass-light">on its way.</em>
+        </h3>
+        <p className="mt-5 font-display italic text-parchment/80 max-w-xs">
+          Thank you for reaching out. Estera reads every message personally and will be in touch soon.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="relative p-10 md:p-14 rounded-sm overflow-hidden bg-forest text-parchment">
       <span className="eyebrow !text-brass-light">
@@ -95,11 +109,7 @@ function BrandInquiry() {
           disabled={status === "sending"}
           className="mt-4 self-start font-display text-[0.9rem] tracking-widest uppercase px-8 py-4 rounded-sm bg-brass text-ink hover:bg-brass-light hover:-translate-y-0.5 transition-all disabled:opacity-50"
         >
-          {status === "sending"
-            ? "Sending…"
-            : status === "sent"
-              ? "Sent ✦"
-              : "Send Inquiry"}
+          {status === "sending" ? "Sending…" : "Send Inquiry"}
         </button>
         {status === "error" && (
           <p className="text-brass-light italic text-sm">{msg}</p>

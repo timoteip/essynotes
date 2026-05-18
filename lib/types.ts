@@ -30,3 +30,13 @@ export type Product = {
   checkoutUrl: string;
   badge?: string;
 };
+
+export type SiteSettings = {
+  announceBar?: string;
+  bioShort?: string;
+  followerCounts?: {
+    tiktok?: string;
+    instagram?: string;
+    youtube?: string;
+  };
+};

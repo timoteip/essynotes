@@ -47,7 +47,6 @@ const siteSettings = defineType({
   fields: [
     defineField({ name: "announceBar", type: "string", description: "Text at top of site" }),
     defineField({ name: "bioShort", type: "text" }),
-    defineField({ name: "portrait", type: "image", options: { hotspot: true } }),
     defineField({ name: "followerCounts", type: "object", fields: [
       { name: "tiktok", type: "string" },
       { name: "instagram", type: "string" },

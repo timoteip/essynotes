@@ -34,6 +34,7 @@ const config: Config = {
         "rise-in": "riseIn 1.2s cubic-bezier(.4,.2,.2,1) forwards",
         "fade-in": "fadeIn 1.2s cubic-bezier(.4,.2,.2,1) forwards",
         "scroll-x": "scrollX 40s linear infinite",
+        "scale-in": "scaleIn 0.6s cubic-bezier(.34,1.56,.64,1) forwards",
       },
       keyframes: {
         riseIn: {
@@ -43,6 +44,10 @@ const config: Config = {
         fadeIn: {
           "0%": { opacity: "0" },
           "100%": { opacity: "1" },
+        },
+        scaleIn: {
+          "0%": { opacity: "0", transform: "scale(0.5)" },
+          "100%": { opacity: "1", transform: "scale(1)" },
         },
         scrollX: {
           from: { transform: "translateX(0)" },

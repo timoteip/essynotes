@@ -1,6 +1,10 @@
 import Reveal from "./Reveal";
 
-export default function About() {
+type AboutProps = {
+  bio?: string;
+};
+
+export default function About({ bio }: AboutProps) {
   return (
     <section
       id="about"
@@ -12,7 +16,7 @@ export default function About() {
       <div className="container-site">
         <Reveal>
           <div className="grid md:grid-cols-[1fr_1.4fr] gap-16 items-center">
-            {/* Portrait card (placeholder — swap for real photo) */}
+            {/* Portrait card (hardcoded — edit styles here) */}
             <div className="relative aspect-[3/4] max-w-[420px] rounded-sm overflow-hidden shadow-[0_30px_80px_rgba(20,17,13,0.3)] mx-auto md:mx-0">
               <div
                 className="absolute inset-0"
@@ -48,12 +52,9 @@ export default function About() {
                 <em className="italic text-forest">Estera</em> — and I make
                 things by hand.
               </h2>
-              <p className="mt-5 text-cocoa">
-                I started essy notes in a small room with a stack of lined paper
-                and a pen that leaked just enough to be charming. What began as
-                a quiet journal became a corner of the internet where hundreds
-                of thousands of people now come to slow down, write better, and
-                find some stillness between the screens.
+              <p className="mt-5 text-cocoa whitespace-pre-line">
+                {bio ??
+                  "I started essy notes in a small room with a stack of lined paper and a pen that leaked just enough to be charming. What began as a quiet journal became a corner of the internet where hundreds of thousands of people now come to slow down, write better, and find some stillness between the screens."}
               </p>
 
               <div className="relative my-8 pl-8 py-6 border-l border-brass">

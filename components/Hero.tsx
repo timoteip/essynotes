@@ -1,6 +1,17 @@
 import Link from "next/link";
 
-export default function Hero() {
+type HeroProps = {
+  followerCounts?: {
+    tiktok?: string;
+    instagram?: string;
+    youtube?: string;
+  };
+};
+
+export default function Hero({ followerCounts }: HeroProps) {
+  const tiktok = followerCounts?.tiktok ?? "243K";
+  const instagram = followerCounts?.instagram ?? "52K";
+  const youtube = followerCounts?.youtube ?? "22K";
   return (
     <header
       id="top"
@@ -38,9 +49,9 @@ export default function Hero() {
           </div>
 
           <div className="mt-12 flex flex-wrap gap-10 font-display text-cocoa opacity-0 animate-fade-in [animation-delay:1.1s]">
-            <Stat value="243K" label="on TikTok" />
-            <Stat value="52K" label="on Instagram" />
-            <Stat value="22K" label="on YouTube" />
+            <Stat value={tiktok} label="on TikTok" />
+            <Stat value={instagram} label="on Instagram" />
+            <Stat value={youtube} label="on YouTube" />
           </div>
         </div>
 

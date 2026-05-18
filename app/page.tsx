@@ -5,24 +5,25 @@ import Portfolio from "@/components/Portfolio";
 import Shop from "@/components/Shop";
 import Tools from "@/components/Tools";
 import Contact from "@/components/Contact";
-import { getVideos, getTools, getProducts } from "@/lib/data";
+import { getVideos, getTools, getProducts, getSiteSettings } from "@/lib/data";
 
 // Revalidate every 60 seconds (ISR) so Sanity edits appear within a minute
 export const revalidate = 60;
 
 export default async function HomePage() {
   // Parallel fetch from Sanity + Lemon Squeezy
-  const [videos, tools, products] = await Promise.all([
+  const [videos, tools, products, settings] = await Promise.all([
     getVideos(),
     getTools(),
     getProducts(),
+    getSiteSettings(),
   ]);
 
   return (
     <>
-      <Hero />
+      <Hero followerCounts={settings.followerCounts} />
       <Marquee />
-      <About />
+      <About bio={settings.bioShort} />
       <Portfolio videos={videos} />
       <Shop products={products} />
       <Tools tools={tools} />
