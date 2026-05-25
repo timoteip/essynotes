@@ -4,9 +4,9 @@ const cols = [
   {
     title: "Explore",
     links: [
-      { label: "About", href: "#about" },
-      { label: "Shop", href: "#shop" },
-      { label: "Tools", href: "#tools" },
+      { label: "About", href: "/#about" },
+      { label: "Shop", href: "/#shop" },
+      { label: "Tools", href: "/#tools" },
     ],
   },
   {
@@ -23,7 +23,7 @@ const cols = [
       { label: "Privacy", href: "/privacy" },
       { label: "Terms", href: "/terms" },
       { label: "Refunds", href: "/refunds" },
-      { label: "Contact", href: "#contact" },
+      { label: "Contact", href: "/#contact" },
     ],
   },
 ];
@@ -73,7 +73,7 @@ export default function Footer() {
               { l: "Tt", h: "https://tiktok.com/@essynotes" },
               { l: "Ig", h: "https://instagram.com/essynotes" },
               { l: "Yt", h: "https://youtube.com/@essynotes" },
-              { l: "@", h: "#contact" },
+              { l: "@", h: "/#contact" },
             ].map((s) => (
               <Link
                 key={s.l}

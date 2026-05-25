@@ -4,10 +4,10 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 const links = [
-  { href: "#about", label: "About" },
-  { href: "#shop", label: "Shop" },
-  { href: "#tools", label: "My Tools" },
-  { href: "#contact", label: "Contact" },
+  { href: "/#about", label: "About" },
+  { href: "/#shop", label: "Shop" },
+  { href: "/#tools", label: "My Tools" },
+  { href: "/#contact", label: "Contact" },
 ];
 
 export default function Nav() {
@@ -27,7 +27,7 @@ export default function Nav() {
           scrolled ? "py-3" : "py-5"
         }`}
       >
-        <Link href="#top" className="flex items-baseline gap-1.5" onClick={() => setIsOpen(false)}>
+        <Link href="/" className="flex items-baseline gap-1.5" onClick={() => setIsOpen(false)}>
           <span className="font-script text-forest text-[2.3rem] leading-none translate-y-1">
             essynotes
           </span>
@@ -48,7 +48,7 @@ export default function Nav() {
         </ul>
 
         <Link
-          href="#newsletter"
+          href="/#newsletter"
           className="hidden md:inline-block font-display text-ivory bg-forest px-5 py-3 text-[0.85rem] tracking-[0.18em] uppercase rounded-sm transition-all hover:bg-ink hover:-translate-y-0.5"
         >
           Join the Letter
@@ -77,7 +77,7 @@ export default function Nav() {
             </Link>
           ))}
           <Link
-            href="#newsletter"
+            href="/#newsletter"
             onClick={() => setIsOpen(false)}
             className="mt-4 font-display text-ivory bg-forest px-5 py-3 text-[0.85rem] tracking-[0.18em] uppercase rounded-sm text-center transition-all hover:bg-ink"
           >
