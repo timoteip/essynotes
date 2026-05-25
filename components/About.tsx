@@ -28,7 +28,7 @@ export default function About({ bio }: AboutProps) {
               <div className="absolute inset-2.5 border border-brass/50 pointer-events-none" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-ivory p-8">
                 <span className="font-script text-brass-light text-[5rem] leading-[0.9]">
-                  essy.
+                  essynotes.
                 </span>
                 <p className="font-display italic opacity-80 mt-4 tracking-wider text-[0.95rem]">
                   — est. 2022 —
@@ -74,7 +74,7 @@ export default function About({ bio }: AboutProps) {
               </p>
 
               <div className="mt-8 font-script text-forest text-[3rem] leading-none">
-                — essy
+                — essynotes
               </div>
               <span className="block eyebrow mt-1">
                 with love, from a quiet desk
