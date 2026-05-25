@@ -29,6 +29,7 @@ export type Product = {
   priceCents: number;
   checkoutUrl: string;
   badge?: string;
+  thumbnailUrl?: string;
 };
 
 export type SiteSettings = {

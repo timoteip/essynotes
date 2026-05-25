@@ -104,12 +104,13 @@ export async function getProducts(): Promise<Product[]> {
       return {
         id: p.id,
         name: attrs.name,
-        category: attrs.description ? stripHtml(attrs.description).slice(0, 40) : "Template · PDF",
+        category: "Template · PDF",
         description: attrs.description ? stripHtml(attrs.description) : "",
         priceDollars: Math.floor(price / 100),
         priceCents: price % 100,
         checkoutUrl: attrs.buy_now_url ?? "",
         badge: attrs.status === "published" ? undefined : "Draft",
+        thumbnailUrl: attrs.large_thumb_url ?? attrs.thumb_url ?? undefined,
       };
     });
   } catch (err) {

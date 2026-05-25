@@ -28,14 +28,6 @@ const tools = [
     cta: "Shop Golden Coil",
   },
   {
-    logo: "/icons/paperpal.png",
-    category: "Writing Tools",
-    name: "Paperpal",
-    description: "An AI writing companion that helps you write more clearly, one sentence at a time.",
-    href: "https://paperpal.com/?utm_source=1stcollab&utm_campaign=essynotes",
-    cta: "Try Paperpal",
-  },
-  {
     logo: "/icons/ellington.webp",
     category: "Pens",
     name: "Ellington Pens",

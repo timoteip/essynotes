@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import Image from "next/image";
 import Reveal from "./Reveal";
 import type { Product } from "@/lib/types";
 
@@ -105,45 +106,58 @@ function ProductCard({
   onBuy: (url: string) => void;
 }) {
   return (
-    <div className="bg-ivory text-ink rounded-sm overflow-hidden shadow-[0_15px_35px_rgba(0,0,0,0.25)] hover:-translate-y-1.5 transition-transform duration-500 flex flex-col">
+    <div className="group bg-ivory text-ink rounded-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.28)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col">
+      {/* Image */}
       <div
-        className="relative aspect-[4/5] paper-grain"
-        style={{ background: gradient }}
+        className="relative aspect-[4/3] overflow-hidden"
+        style={product.thumbnailUrl ? undefined : { background: gradient }}
       >
+        {product.thumbnailUrl ? (
+          <Image
+            src={product.thumbnailUrl}
+            alt={product.name}
+            fill
+            className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-end p-8">
+            <h4 className="font-display italic text-[1.6rem] leading-snug -tracking-tight text-ivory">
+              {product.name}
+            </h4>
+          </div>
+        )}
         {product.badge && (
-          <div className="absolute top-4 right-4 bg-ivory/15 backdrop-blur-md text-ivory font-display italic text-[0.78rem] tracking-widest px-3 py-1 rounded-sm uppercase">
+          <div className="absolute top-4 left-4 bg-brass text-ink font-display text-[0.72rem] tracking-widest px-3 py-1 rounded-sm uppercase z-10">
             {product.badge}
           </div>
         )}
-        <div className="absolute inset-6 flex flex-col justify-between text-ivory">
-          <span className="font-script text-brass-light text-[2.5rem] leading-[0.9]">
-            the
-          </span>
-          <h4 className="font-display italic text-[1.4rem] leading-snug -tracking-tight text-ivory">
-            {product.name}
-          </h4>
-        </div>
       </div>
 
+      {/* Info */}
       <div className="p-6 flex-grow flex flex-col">
-        <span className="eyebrow">{product.category}</span>
-        <h3 className="mt-2 font-display font-medium text-[1.5rem] -tracking-tight">
+        <span className="font-display italic text-[0.75rem] tracking-widest uppercase text-brass">
+          {product.category}
+        </span>
+        <h3 className="mt-1.5 font-display font-medium text-[1.35rem] -tracking-tight leading-snug">
           {product.name}
         </h3>
-        <p className="mt-2 text-[0.95rem] text-cocoa font-body italic flex-grow">
+        <p className="mt-2 text-[0.92rem] text-cocoa font-body italic leading-relaxed flex-grow line-clamp-3">
           {product.description}
         </p>
 
-        <div className="mt-6 pt-5 border-t border-cocoa/15 flex justify-between items-center">
-          <div className="font-display text-[1.8rem] text-forest -tracking-tight">
-            ${product.priceDollars}
-            <small className="ml-0.5 text-[0.85rem] italic text-cocoa opacity-70 not-italic">
+        <div className="mt-5 pt-5 border-t border-cocoa/15 flex items-center justify-between gap-4">
+          <div className="font-display -tracking-tight leading-none">
+            <span className="text-[1.9rem] text-forest font-medium">
+              ${product.priceDollars}
+            </span>
+            <span className="text-[1rem] text-cocoa/70">
               .{product.priceCents.toString().padStart(2, "0")}
-            </small>
+            </span>
           </div>
           <button
             onClick={() => onBuy(product.checkoutUrl)}
-            className="font-display text-ivory bg-forest text-[0.82rem] tracking-widest uppercase px-4 py-3 rounded-sm transition-colors hover:bg-ink"
+            className="font-display text-ivory bg-forest text-[0.8rem] tracking-widest uppercase px-5 py-3 rounded-sm transition-colors hover:bg-ink shrink-0"
           >
             Add to Desk
           </button>
