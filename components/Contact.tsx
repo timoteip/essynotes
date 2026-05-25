@@ -190,10 +190,12 @@ function Newsletter() {
 
       <ul className="mt-8 flex flex-col gap-3 list-none">
         {[
-          "One free template each month, subscribers only",
-          "Early access to new shop drops",
-          "Short handwriting lessons, by email",
-          "No spam, ever. Unsubscribe whenever.",
+          "Updates on latest tools used (worth buying)",
+          "DIY projects + links",
+          "Journal prompts / ideas",
+          "Handwriting advice + tips",
+          "Templates",
+          "Motivation",
         ].map((p) => (
           <li key={p} className="font-body italic flex gap-3 items-baseline">
             <span className="text-brass not-italic">✦</span>
