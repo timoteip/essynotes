@@ -51,6 +51,16 @@ export const metadata: Metadata = {
     title: "essy notes",
     description: "Handwriting, slow living, intentional pages.",
   },
+  keywords: [
+    "handwriting",
+    "journaling",
+    "slow living",
+    "digital templates",
+    "fountain pen",
+    "bullet journal",
+    "handwriting content creator",
+    "essy notes",
+  ],
   robots: { index: true, follow: true },
 };
 

@@ -13,6 +13,7 @@ const links = [
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -27,7 +28,7 @@ export default function Nav() {
           scrolled ? "py-3" : "py-5"
         }`}
       >
-        <Link href="#top" className="flex items-baseline gap-1.5">
+        <Link href="#top" className="flex items-baseline gap-1.5" onClick={() => setIsOpen(false)}>
           <span className="font-script text-forest text-[2.3rem] leading-none translate-y-1">
             essy
           </span>
@@ -57,10 +58,37 @@ export default function Nav() {
           Join the Letter
         </Link>
 
-        <button className="md:hidden text-forest text-2xl" aria-label="Menu">
-          ≡
+        <button
+          className="md:hidden text-forest text-[1.8rem] leading-none px-1"
+          aria-label={isOpen ? "Close menu" : "Open menu"}
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((v) => !v)}
+        >
+          {isOpen ? "×" : "≡"}
         </button>
       </div>
+
+      {isOpen && (
+        <div className="md:hidden border-t border-cocoa/10 bg-ivory/95 backdrop-blur-md px-6 py-6 flex flex-col gap-1">
+          {links.map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              onClick={() => setIsOpen(false)}
+              className="font-display uppercase text-ink text-[0.95rem] tracking-[0.14em] py-3 border-b border-cocoa/10 last:border-0 hover:text-forest transition-colors"
+            >
+              {l.label}
+            </Link>
+          ))}
+          <Link
+            href="#newsletter"
+            onClick={() => setIsOpen(false)}
+            className="mt-4 font-display text-ivory bg-forest px-5 py-3 text-[0.85rem] tracking-[0.18em] uppercase rounded-sm text-center transition-all hover:bg-ink"
+          >
+            Join the Letter
+          </Link>
+        </div>
+      )}
     </nav>
   );
 }
