@@ -34,7 +34,10 @@ function BrandInquiry() {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          turnstileToken: data["cf-turnstile-response"],
+        }),
       });
       if (!res.ok) throw new Error();
       setStatus("sent");
@@ -102,6 +105,12 @@ function BrandInquiry() {
           label="Tell me about it"
           textarea
           placeholder="The more detail, the better."
+        />
+
+        <div
+          className="cf-turnstile"
+          data-sitekey="0x4AAAAAADWHOtmt8t5SNoDz"
+          data-theme="dark"
         />
 
         <button

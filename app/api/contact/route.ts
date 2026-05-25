@@ -13,8 +13,11 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
-    // Anti-spam — Turnstile check (only if configured)
-    if (process.env.TURNSTILE_SECRET_KEY && turnstileToken) {
+    // Anti-spam — Turnstile (required when secret key is configured)
+    if (process.env.TURNSTILE_SECRET_KEY) {
+      if (!turnstileToken) {
+        return NextResponse.json({ error: "Spam check failed" }, { status: 403 });
+      }
       const verify = await fetch(
         "https://challenges.cloudflare.com/turnstile/v0/siteverify",
         {
