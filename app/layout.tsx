@@ -32,22 +32,22 @@ const italianno = Italianno({
 export const metadata: Metadata = {
   metadataBase: new URL("https://essynotes.com"),
   title: {
-    default: "essy notes — handwriting, slow living, intentional pages",
-    template: "%s · essy notes",
+    default: "essynotes — handwriting, slow living, intentional pages",
+    template: "%s · essynotes",
   },
   description:
     "Handwriting content, digital templates, and the tools I write with. A quiet corner of the internet for people who still love the weight of a pen.",
   openGraph: {
-    title: "essy notes",
+    title: "essynotes",
     description: "Handwriting, slow living, intentional pages.",
     url: "https://essynotes.com",
-    siteName: "essy notes",
+    siteName: "essynotes",
     locale: "en_US",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "essy notes",
+    title: "essynotes",
     description: "Handwriting, slow living, intentional pages.",
   },
   keywords: [
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
     "fountain pen",
     "bullet journal",
     "handwriting content creator",
-    "essy notes",
+    "essynotes",
   ],
   robots: { index: true, follow: true },
 };

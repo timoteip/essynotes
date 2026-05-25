@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "essy notes — handwriting, slow living, intentional pages";
+export const alt = "essynotes — handwriting, slow living, intentional pages";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -54,8 +54,7 @@ export default function Image() {
             lineHeight: 1,
           }}
         >
-          <span>essy</span>
-          <span style={{ fontStyle: "italic", color: "#e6dbc1" }}>notes</span>
+          <span>essynotes</span>
         </div>
 
         <div

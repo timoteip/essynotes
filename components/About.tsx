@@ -54,7 +54,7 @@ export default function About({ bio }: AboutProps) {
               </h2>
               <p className="mt-5 text-cocoa whitespace-pre-line">
                 {bio ??
-                  "I started essy notes in a small room with a stack of lined paper and a pen that leaked just enough to be charming. What began as a quiet journal became a corner of the internet where hundreds of thousands of people now come to slow down, write better, and find some stillness between the screens."}
+                  "I started essynotes in a small room with a stack of lined paper and a pen that leaked just enough to be charming. What began as a quiet journal became a corner of the internet where hundreds of thousands of people now come to slow down, write better, and find some stillness between the screens."}
               </p>
 
               <div className="relative my-8 pl-8 py-6 border-l border-brass">

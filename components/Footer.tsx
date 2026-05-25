@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-[1.6fr_1fr_1fr_1fr] gap-8 pb-12 border-b border-ivory/10">
           <div>
             <span className="font-script text-brass-light text-[3.4rem] leading-none">
-              essy notes
+              essynotes
             </span>
             <p className="mt-2 font-display italic opacity-70 max-w-[24rem]">
               A quiet corner of the internet for handwriting, journaling, and
@@ -67,7 +67,7 @@ export default function Footer() {
         </div>
 
         <div className="pt-6 flex justify-between items-center flex-wrap gap-4 font-display italic text-[0.85rem] opacity-60">
-          <div>© 2026 essy notes · made slowly, in a quiet room.</div>
+          <div>© 2026 essynotes · made slowly, in a quiet room.</div>
           <div className="flex gap-3">
             {[
               { l: "Tt", h: "https://tiktok.com/@essynotes" },

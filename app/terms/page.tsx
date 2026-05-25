@@ -45,7 +45,7 @@ export default function TermsPage() {
         </h2>
         <p>
           All content on this site — writing, videos, illustrations, and
-          templates — is the intellectual property of Estera / essy notes
+          templates — is the intellectual property of Estera / essynotes
           unless otherwise credited. Please do not reupload or repost without
           permission.
         </p>

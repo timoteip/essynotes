@@ -29,10 +29,7 @@ export default function Nav() {
       >
         <Link href="#top" className="flex items-baseline gap-1.5" onClick={() => setIsOpen(false)}>
           <span className="font-script text-forest text-[2.3rem] leading-none translate-y-1">
-            essy
-          </span>
-          <span className="font-display italic text-cocoa/70 text-[0.82rem] tracking-[0.3em] uppercase">
-            notes
+            essynotes
           </span>
         </Link>
 
