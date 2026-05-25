@@ -31,7 +31,7 @@ export default function Hero({ followerCounts }: HeroProps) {
             welcome to —
           </span>
           <h1 className="display text-[clamp(3.8rem,9vw,7rem)] font-light text-ink opacity-0 animate-rise-in [animation-delay:0.45s]">
-            essynotes
+            essy<em className="italic text-forest font-normal">notes</em>
           </h1>
           <p className="mt-7 max-w-[30rem] text-[1.12rem] text-cocoa leading-[1.7] opacity-0 animate-rise-in [animation-delay:0.7s]">
             Handwriting, slow journaling, and the gentle art of keeping pages
@@ -40,11 +40,11 @@ export default function Hero({ followerCounts }: HeroProps) {
           </p>
 
           <div className="mt-10 flex flex-wrap gap-4 opacity-0 animate-rise-in [animation-delay:0.9s]">
-            <Link href="#journal" className="btn btn-primary">
-              Enter the Journal
-            </Link>
-            <Link href="#shop" className="btn btn-ghost">
+            <Link href="/#shop" className="btn btn-primary">
               Browse the Shop
+            </Link>
+            <Link href="/#tools" className="btn btn-ghost">
+              My Tools
             </Link>
           </div>
 

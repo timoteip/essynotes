@@ -1,9 +1,10 @@
 import Link from "next/link";
+import Image from "next/image";
 import Reveal from "./Reveal";
 
 const tools = [
   {
-    symbol: "☆",
+    logo: "/icons/amazon.svg",
     category: "Shopping",
     name: "Amazon Storefront",
     description: "All my favourite pens, notebooks, and desk essentials in one place.",
@@ -11,7 +12,7 @@ const tools = [
     cta: "Visit Storefront",
   },
   {
-    symbol: "✉",
+    logo: "/icons/etsy.svg",
     category: "Templates",
     name: "Etsy — Templates",
     description: "Printable and digital journaling templates designed for slow, intentional pages.",
@@ -19,7 +20,7 @@ const tools = [
     cta: "Shop Templates",
   },
   {
-    symbol: "◎",
+    logo: "/icons/goldencoil.png",
     category: "Notebooks",
     name: "Golden Coil",
     description: "Fully customisable notebooks and planners — the ones I write in every single day.",
@@ -27,15 +28,7 @@ const tools = [
     cta: "Shop Golden Coil",
   },
   {
-    symbol: "✦",
-    category: "Social",
-    name: "Lemon8",
-    description: "Follow along on Lemon8 for daily handwriting inspiration and journaling ideas.",
-    href: "https://www.lemon8-app.com/essynotes",
-    cta: "Follow on Lemon8",
-  },
-  {
-    symbol: "✍",
+    logo: "/icons/paperpal.png",
     category: "Writing Tools",
     name: "Paperpal",
     description: "An AI writing companion that helps you write more clearly, one sentence at a time.",
@@ -43,7 +36,7 @@ const tools = [
     cta: "Try Paperpal",
   },
   {
-    symbol: "∞",
+    logo: "/icons/ellington.webp",
     category: "Pens",
     name: "Ellington Pens",
     description: "Beautiful, well-crafted pens worth writing home about. My go-to for gifting.",
@@ -81,8 +74,14 @@ export default function Tools() {
                 key={t.name}
                 className="group bg-ivory p-8 rounded-sm border border-cocoa/10 hover:border-brass hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(20,17,13,0.12)] transition-all duration-400 flex flex-col"
               >
-                <div className="w-[60px] h-[60px] rounded-full bg-forest text-brass-light flex items-center justify-center font-display italic text-[1.6rem] mb-6">
-                  {t.symbol}
+                <div className="h-[48px] flex items-center mb-6">
+                  <Image
+                    src={t.logo}
+                    alt={t.name}
+                    width={120}
+                    height={48}
+                    className="object-contain object-left h-[48px] w-auto max-w-[140px]"
+                  />
                 </div>
                 <span className="font-display italic text-[0.75rem] tracking-widest uppercase text-brass">
                   {t.category}

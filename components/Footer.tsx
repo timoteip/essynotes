@@ -66,8 +66,21 @@ export default function Footer() {
           ))}
         </div>
 
-        <div className="pt-6 flex justify-between items-center flex-wrap gap-4 font-display italic text-[0.85rem] opacity-60">
-          <div>© 2026 essynotes · made slowly, in a quiet room.</div>
+        <div className="pt-6 flex justify-between items-end flex-wrap gap-4 font-display italic text-[0.85rem] opacity-60">
+          <div className="flex flex-col gap-1">
+            <div>© 2026 essynotes · made slowly, in a quiet room.</div>
+            <div className="text-[0.78rem] opacity-50">
+              Designed &amp; built by{" "}
+              <Link
+                href="https://www.linkedin.com/in/timotei-perju/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline hover:opacity-100 transition-opacity"
+              >
+                Timotei Perju
+              </Link>
+            </div>
+          </div>
           <div className="flex gap-3">
             {[
               { l: "Tt", h: "https://tiktok.com/@essynotes" },
