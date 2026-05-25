@@ -16,7 +16,6 @@ const cols = [
       { label: "TikTok", href: "https://tiktok.com/@essynotes" },
       { label: "Instagram", href: "https://instagram.com/essynotes" },
       { label: "YouTube", href: "https://youtube.com/@essynotes" },
-      { label: "Pinterest", href: "#" },
     ],
   },
   {
@@ -56,6 +55,7 @@ export default function Footer() {
                   <li key={l.label}>
                     <Link
                       href={l.href}
+                      {...(l.href.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
                       className="font-display opacity-75 hover:opacity-100 hover:text-brass-light transition-all"
                     >
                       {l.label}
@@ -79,6 +79,7 @@ export default function Footer() {
               <Link
                 key={s.l}
                 href={s.h}
+                {...(s.h.startsWith("http") && { target: "_blank", rel: "noopener noreferrer" })}
                 className="w-9 h-9 border border-brass/40 rounded-full flex items-center justify-center font-display font-medium text-[0.85rem] opacity-100 hover:bg-brass hover:text-ink hover:border-brass transition-all"
               >
                 {s.l}

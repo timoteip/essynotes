@@ -24,9 +24,9 @@ export default async function HomePage() {
       <Hero followerCounts={settings.followerCounts} />
       <Marquee />
       <About bio={settings.bioShort} />
-      <Portfolio videos={videos} />
       <Shop products={products} />
       <Tools tools={tools} />
+      <Portfolio videos={videos} />
       <Contact />
     </>
   );
