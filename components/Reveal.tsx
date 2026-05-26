@@ -14,7 +14,6 @@ export default function Reveal({
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    el.classList.add("ready");
     const io = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {

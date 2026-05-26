@@ -189,7 +189,7 @@ function ProductCard({
 
       {/* Info */}
       <div className="p-6 flex-grow flex flex-col">
-        <span className="font-display italic text-[0.75rem] tracking-widest uppercase text-brass">
+        <span className="font-display italic text-[0.75rem] tracking-widest uppercase text-moss">
           {product.category}
         </span>
         <h3 className="mt-1.5 font-display font-medium text-[1.35rem] -tracking-tight leading-snug">

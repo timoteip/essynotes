@@ -46,9 +46,9 @@ export default function Footer() {
 
           {cols.map((col) => (
             <div key={col.title}>
-              <h5 className="font-display italic text-[0.8rem] tracking-widest uppercase text-brass-light mb-5">
+              <h4 className="font-display italic text-[0.8rem] tracking-widest uppercase text-brass-light mb-5">
                 {col.title}
-              </h5>
+              </h4>
               <ul className="flex flex-col gap-3 list-none">
                 {col.links.map((l) => (
                   <li key={l.label}>
@@ -69,7 +69,7 @@ export default function Footer() {
         <div className="pt-6 flex justify-between items-end flex-wrap gap-4 font-display italic text-[0.85rem] opacity-60">
           <div className="flex flex-col gap-1">
             <div>© 2026 essynotes · made slowly, in a quiet room.</div>
-            <div className="text-[0.78rem] opacity-50">
+            <div className="text-[0.78rem] opacity-70">
               Designed &amp; built by{" "}
               <Link
                 href="https://www.linkedin.com/in/timotei-perju/"

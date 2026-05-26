@@ -123,12 +123,9 @@
    SCROLL REVEAL
 ═══════════════════════════════════════ */
 .reveal {
-  transition: opacity 1s cubic-bezier(0.4, 0.2, 0.2, 1), transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
-}
-
-.reveal.ready {
   opacity: 0;
   transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.4, 0.2, 0.2, 1), transform 1s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
 .reveal.in {
@@ -138,7 +135,6 @@
 
 @media (prefers-reduced-motion: reduce) {
   .reveal,
-  .reveal.ready,
   .reveal.in {
     transition: none;
     opacity: 1;

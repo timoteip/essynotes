@@ -76,12 +76,12 @@ export default function Tools() {
                     style={{ width: "auto", height: "48px" }}
                   />
                 </div>
-                <span className="font-display italic text-[0.75rem] tracking-widest uppercase text-brass">
+                <span className="font-display italic text-[0.75rem] tracking-widest uppercase text-moss">
                   {t.category}
                 </span>
-                <h4 className="mt-1 font-display font-medium text-[1.35rem] -tracking-tight">
+                <h3 className="mt-1 font-display font-medium text-[1.35rem] -tracking-tight">
                   {t.name}
-                </h4>
+                </h3>
                 <p className="mt-3 text-[0.92rem] text-cocoa font-body italic flex-grow">
                   {t.description}
                 </p>
@@ -100,7 +100,7 @@ export default function Tools() {
         </Reveal>
 
         <Reveal>
-          <p className="mt-16 text-center font-display italic text-cocoa/65 text-[0.88rem]">
+          <p className="mt-16 text-center font-display italic text-cocoa/80 text-[0.88rem]">
             — Some links above are affiliate. It helps keep the desk lit. Thank
             you for reading. —
           </p>

@@ -91,10 +91,11 @@ function BrandInquiry() {
         </div>
         <Field name="email" label="Email" type="email" required />
         <div className="flex flex-col gap-1.5">
-          <label className="font-display italic text-[0.85rem] tracking-wider uppercase opacity-80">
+          <label htmlFor="collab-type" className="font-display italic text-[0.85rem] tracking-wider uppercase opacity-80">
             Collaboration type
           </label>
           <select
+            id="collab-type"
             name="type"
             className="font-body text-[1rem] py-3.5 bg-transparent border-0 border-b border-current outline-none focus:border-brass transition-colors"
           >
@@ -181,7 +182,7 @@ function Newsletter() {
       id="newsletter"
       className="p-10 md:p-14 rounded-sm bg-cream text-ink border border-cocoa/15"
     >
-      <span className="eyebrow !text-brass">
+      <span className="eyebrow !text-moss">
         <span className="rule-line" />
         The Letter
       </span>
@@ -263,11 +264,12 @@ function Field({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label className="font-display italic text-[0.85rem] tracking-wider uppercase opacity-80">
+      <label htmlFor={name} className="font-display italic text-[0.85rem] tracking-wider uppercase opacity-80">
         {label}
       </label>
       {textarea ? (
         <textarea
+          id={name}
           name={name}
           required={required}
           placeholder={placeholder}
@@ -275,6 +277,7 @@ function Field({
         />
       ) : (
         <input
+          id={name}
           name={name}
           type={type}
           required={required}
