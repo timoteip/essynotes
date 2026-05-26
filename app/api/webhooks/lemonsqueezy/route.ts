@@ -37,7 +37,7 @@ export async function POST(req: Request) {
       if (process.env.RESEND_API_KEY && customerEmail) {
         const resend = new Resend(process.env.RESEND_API_KEY);
         await resend.emails.send({
-          from: process.env.CONTACT_FORM_FROM_EMAIL ?? "hello@essynotes.com",
+          from: `essynotes <${process.env.CONTACT_FORM_FROM_EMAIL ?? "hello@essynotes.com"}>`,
           to: customerEmail,
           subject: `Your download is ready — ${productName}`,
           html: orderEmail({ firstName, productName, receiptUrl }),
