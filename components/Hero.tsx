@@ -55,8 +55,10 @@ export default function Hero({ followerCounts }: HeroProps) {
           </div>
         </div>
 
-        {/* Page stack visual */}
-        <PageStack />
+        {/* Page stack visual — only shown when hero is 2-column (lg+) */}
+        <div className="hidden lg:block">
+          <PageStack />
+        </div>
       </div>
     </header>
   );

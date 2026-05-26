@@ -4,6 +4,8 @@ const words = [
   "honest stationery",
   "the art of sitting still",
   "one line at a time",
+  "write it down",
+  "ink on paper",
 ];
 
 export default function Marquee() {

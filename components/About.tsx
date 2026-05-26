@@ -17,7 +17,7 @@ export default function About({ bio }: AboutProps) {
         <Reveal>
           <div className="grid md:grid-cols-[1fr_1.4fr] gap-16 items-center">
             {/* Portrait card (hardcoded — edit styles here) */}
-            <div className="relative aspect-[3/4] max-w-[420px] rounded-sm overflow-hidden shadow-[0_30px_80px_rgba(20,17,13,0.3)] mx-auto md:mx-0">
+            <div className="relative aspect-[3/4] w-full max-w-[420px] rounded-sm overflow-hidden shadow-[0_30px_80px_rgba(20,17,13,0.3)] mx-auto md:mx-0">
               <div
                 className="absolute inset-0"
                 style={{

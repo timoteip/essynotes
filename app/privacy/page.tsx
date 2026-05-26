@@ -18,9 +18,8 @@ export default function PrivacyPage() {
 
       <div className="mt-12 space-y-6 text-[1.05rem] leading-[1.7] text-cocoa">
         <p>
-          essynotes is operated by Estera Perju. This policy explains what
-          information we collect when you visit essynotes.com, how we use it,
-          and what rights you have over it. We keep things simple because we
+          This policy explains what information we collect when you visit
+          essynotes.com, how we use it, and what rights you have over it. We keep things simple because we
           don&rsquo;t do anything complicated with your data.
         </p>
 

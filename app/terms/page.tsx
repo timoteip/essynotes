@@ -19,7 +19,7 @@ export default function TermsPage() {
       <div className="mt-12 space-y-6 text-[1.05rem] leading-[1.7] text-cocoa">
         <p>
           These Terms of Service govern your use of essynotes.com, operated by
-          Estera Perju (&ldquo;essynotes&rdquo;, &ldquo;we&rdquo;,
+          Essynotes (&ldquo;essynotes&rdquo;, &ldquo;we&rdquo;,
           &ldquo;us&rdquo;). By accessing the site or purchasing a product, you
           agree to these terms. Please read them — they&rsquo;re short and
           written in plain English.
@@ -103,8 +103,8 @@ export default function TermsPage() {
         </h2>
         <p>
           All content on this site — writing, photography, video, illustrations,
-          templates, and design — is the intellectual property of Estera /
-          essynotes unless otherwise credited. Unauthorized reproduction,
+          templates, and design — is the intellectual property of Essynotes
+          unless otherwise credited. Unauthorized reproduction,
           distribution, or use of any content is prohibited.
         </p>
         <p>

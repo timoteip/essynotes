@@ -58,6 +58,12 @@ function BrandInquiry() {
         <p className="mt-5 font-display italic text-parchment/80 max-w-xs">
           Thank you for reaching out. Estera reads every message personally and will be in touch soon.
         </p>
+        <a
+          href="/#shop"
+          className="mt-8 font-display uppercase tracking-widest text-[0.8rem] text-brass-light border border-brass-light/40 px-6 py-3 rounded-sm hover:bg-brass-light hover:text-ink transition-all"
+        >
+          Browse the shop →
+        </a>
       </div>
     );
   }
@@ -79,7 +85,7 @@ function BrandInquiry() {
       </p>
 
       <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field name="name" label="Name" required />
           <Field name="brand" label="Brand" />
         </div>
@@ -109,7 +115,7 @@ function BrandInquiry() {
 
         <div
           className="cf-turnstile"
-          data-sitekey="0x4AAAAAADWHOtmt8t5SNoDz"
+          data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
           data-theme="dark"
         />
 

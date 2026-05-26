@@ -61,6 +61,33 @@ export const metadata: Metadata = {
     "essynotes",
   ],
   robots: { index: true, follow: true },
+  alternates: { canonical: "https://essynotes.com" },
+};
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://essynotes.com/#estera",
+      name: "Estera",
+      url: "https://essynotes.com",
+      sameAs: [
+        "https://tiktok.com/@essynotes",
+        "https://instagram.com/essynotes",
+        "https://youtube.com/@essynotes",
+      ],
+      jobTitle: "Handwriting Content Creator",
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://essynotes.com/#website",
+      url: "https://essynotes.com",
+      name: "essynotes",
+      description: "Handwriting content, digital templates, and the tools I write with.",
+      publisher: { "@id": "https://essynotes.com/#estera" },
+    },
+  ],
 };
 
 export default function RootLayout({
@@ -75,6 +102,10 @@ export default function RootLayout({
         <Nav />
         <main>{children}</main>
         <Footer />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
           strategy="lazyOnload"

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import type { Product } from "@/lib/types";
@@ -80,7 +80,13 @@ export default function Shop({ products }: { products: Product[] }) {
         </Reveal>
 
         <Reveal>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`grid gap-8 ${
+            products.length === 1
+              ? "grid-cols-1 max-w-md mx-auto"
+              : products.length === 2
+              ? "grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto"
+              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          }`}>
             {products.map((p, i) => (
               <ProductCard
                 key={p.id}
@@ -105,16 +111,32 @@ function ProductCard({
   gradient: string;
   onBuy: (url: string) => void;
 }) {
+  const images = product.images && product.images.length > 0 ? product.images : undefined;
+  const [activeIdx, setActiveIdx] = useState(0);
+
+  const prev = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveIdx((i) => (i - 1 + (images?.length ?? 1)) % (images?.length ?? 1));
+  }, [images]);
+
+  const next = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    setActiveIdx((i) => (i + 1) % (images?.length ?? 1));
+  }, [images]);
+
+  const currentImage = images ? images[activeIdx] : product.thumbnailUrl;
+
   return (
     <div className="group bg-ivory text-ink rounded-sm overflow-hidden shadow-[0_8px_30px_rgba(0,0,0,0.18)] hover:shadow-[0_20px_50px_rgba(0,0,0,0.28)] hover:-translate-y-1.5 transition-all duration-500 flex flex-col">
-      {/* Image */}
+      {/* Image / Carousel */}
       <div
         className="relative aspect-[4/3] overflow-hidden"
-        style={product.thumbnailUrl ? undefined : { background: gradient }}
+        style={currentImage ? undefined : { background: gradient }}
       >
-        {product.thumbnailUrl ? (
+        {currentImage ? (
           <Image
-            src={product.thumbnailUrl}
+            key={currentImage}
+            src={currentImage}
             alt={product.name}
             fill
             className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
@@ -127,10 +149,41 @@ function ProductCard({
             </h4>
           </div>
         )}
+
         {product.badge && (
           <div className="absolute top-4 left-4 bg-brass text-ink font-display text-[0.72rem] tracking-widest px-3 py-1 rounded-sm uppercase z-10">
             {product.badge}
           </div>
+        )}
+
+        {/* Carousel controls — only shown when there are multiple images */}
+        {images && images.length > 1 && (
+          <>
+            <button
+              onClick={prev}
+              aria-label="Previous image"
+              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-ink/50 hover:bg-ink/80 text-ivory w-7 h-7 rounded-full flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200"
+            >
+              ‹
+            </button>
+            <button
+              onClick={next}
+              aria-label="Next image"
+              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-ink/50 hover:bg-ink/80 text-ivory w-7 h-7 rounded-full flex items-center justify-center opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition-opacity duration-200"
+            >
+              ›
+            </button>
+            <div className="absolute bottom-2 left-1/2 -translate-x-1/2 z-10 flex gap-1.5">
+              {images.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={(e) => { e.stopPropagation(); setActiveIdx(i); }}
+                  aria-label={`Image ${i + 1}`}
+                  className={`w-1.5 h-1.5 rounded-full transition-colors ${i === activeIdx ? "bg-ivory" : "bg-ivory/40"}`}
+                />
+              ))}
+            </div>
+          </>
         )}
       </div>
 
