@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Cormorant_Garamond, EB_Garamond, Italianno } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
@@ -110,6 +111,7 @@ export default function RootLayout({
           src="https://challenges.cloudflare.com/turnstile/v0/api.js"
           strategy="lazyOnload"
         />
+        <Analytics />
       </body>
     </html>
   );
