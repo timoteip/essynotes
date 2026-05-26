@@ -1,4 +1,4 @@
-# essy notes
+# essynotes
 
 A custom Next.js website for a handwriting content creator.
 Moody-academic aesthetic, digital template shop, affiliate page, newsletter.
@@ -10,8 +10,8 @@ Moody-academic aesthetic, digital template shop, affiliate page, newsletter.
 | Layer | Tool | Why |
 |-------|------|-----|
 | Framework | **Next.js 14** (App Router) | SEO, speed, free Vercel hosting |
-| Styling | **Tailwind CSS** + custom tokens | Matches V1 demo exactly |
-| CMS | **Sanity** | Estera edits content at `/studio` |
+| Styling | **Tailwind CSS** + custom tokens | Matches the design exactly |
+| CMS | **Sanity** | Edits announce bar, bio, follower counts at `/studio` |
 | Shop | **Lemon Squeezy** | Merchant of record — handles tax, Apple Pay, PayPal, cards globally |
 | Contact email | **Resend** | Generous free tier, modern API |
 | Newsletter | **Kit** (ConvertKit) | Free up to 10k subs |
@@ -32,26 +32,23 @@ cp .env.local.example .env.local
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) — the site runs with **mock data** out of the box, so you'll see everything working before setting up any external services.
+Open [http://localhost:3000](http://localhost:3000) — the site runs with mock data out of the box before setting up any external services.
 
 ---
 
 ## Pre-launch checklist
-- [ ] Real photo of Estera in About section (replace the placeholder green card in `components/About.tsx`)
-- [ ] Real thumbnails on video cards (upload via Sanity)
-- [ ] Real product mockup images in Lemon Squeezy
-- [ ] Legal pages reviewed — `/privacy`, `/terms`, `/refunds` have placeholders; generate real ones with [Termly](https://termly.io)
-- [ ] Buy your own product end-to-end with Apple Pay on a real iPhone
+- [ ] Real photo of Estera in About section (replace the placeholder card in `components/About.tsx`)
+- [ ] Product images uploaded in Lemon Squeezy (used automatically via the API)
+- [ ] Legal pages reviewed — `/privacy`, `/terms`, `/refunds`
+- [ ] Buy your own product end-to-end on a real device
 - [ ] Test contact + newsletter forms
-- [ ] Run Lighthouse in Chrome DevTools → aim for 90+ across all four categories
-- [ ] Mobile test on Estera's actual phone
-- [ ] Vercel Analytics enabled (free, one click)
+- [ ] Run Lighthouse → aim for 90+ across all categories
+- [ ] Mobile test on a real phone
+- [ ] Vercel Analytics enabled (free, one click in Vercel dashboard)
 
 ---
 
-## Architecture notes
-
-### How data flows
+## Architecture
 
 ```
                       ┌─────────────────┐
@@ -63,29 +60,20 @@ Open [http://localhost:3000](http://localhost:3000) — the site runs with **moc
                  │             │             │
           ┌──────▼─────┐ ┌────▼──────┐ ┌────▼─────┐
           │   Sanity   │ │Lemon Sqz. │ │  Resend  │
-          │  (content) │ │  (shop)   │ │  (email) │
+          │ (settings) │ │  (shop)   │ │  (email) │
           └────────────┘ └───────────┘ └──────────┘
 ```
 
-- **Sanity** stores videos, tools, about copy — Estera edits at `/studio`
+- **Sanity** stores site settings (announce bar, bio, follower counts) — edited at `/studio`
 - **Lemon Squeezy** stores products, handles payments, delivers files, handles tax
 - **Resend** sends brand-inquiry emails
 - **Kit** stores newsletter subscribers
 
-The Next.js site pulls from all of these at build/request time, with **60-second ISR** revalidation so content updates appear within a minute.
-
-### Why mock fallbacks?
-
-`lib/data.ts` returns hardcoded demo content if env vars aren't set. This means:
-- The site runs locally before you create any accounts
-- If Sanity goes down, the site still renders (with old content)
-- You can develop new features without touching production data
+The Next.js site pulls from all of these at build/request time with **5-minute ISR** revalidation.
 
 ### Why merchant of record (not direct Stripe)?
 
-Selling digital goods internationally means handling VAT in 27 EU countries, UK VAT from £0, various US state taxes, Canadian GST/HST/PST, Australian GST, etc. Lemon Squeezy handles all of this for 5% + $0.50 per sale. For a solo creator, this is dramatically cheaper than hiring an accountant to file in 30+ jurisdictions.
-
-If Estera ever launches physical products, add **Shopify** alongside for physical; keep Lemon Squeezy for digital.
+Selling digital goods internationally means handling VAT in 27 EU countries, UK VAT from £0, US state taxes, Canadian GST/HST/PST, and more. Lemon Squeezy handles all of this for 5% + $0.50 per sale — dramatically cheaper than filing in 30+ jurisdictions.
 
 ---
 
@@ -96,21 +84,22 @@ essynotes/
 ├── app/
 │   ├── api/
 │   │   ├── contact/route.ts           Brand inquiry → Resend
-│   │   ├── newsletter/route.ts        Signup → Kit
-│   │   └── webhooks/lemonsqueezy/     Order tracking
+│   │   └── newsletter/route.ts        Signup → Kit
 │   ├── studio/[[...tool]]/            Embedded Sanity Studio
 │   ├── privacy/, terms/, refunds/     Legal pages
-│   ├── globals.css                    Design tokens
-│   ├── layout.tsx                     Root + fonts + nav/footer
+│   ├── globals.css                    Design tokens + animations
+│   ├── layout.tsx                     Root layout + JSON-LD + fonts
 │   ├── page.tsx                       Homepage
 │   ├── sitemap.ts                     SEO
 │   └── robots.ts                      SEO
 ├── components/                        All UI components
 ├── lib/
 │   ├── sanity.ts                      Sanity client
-│   ├── data.ts                        Data fetchers + mocks
+│   ├── data.ts                        Data fetchers (Sanity + Lemon Squeezy)
+│   ├── product-images.ts              Extra product image URLs
 │   └── types.ts                       Shared types
-├── schemas/index.ts                   Sanity content models
+├── schemas/index.ts                   Sanity schema (siteSettings)
+├── public/icons/                      Tool/brand logos
 ├── sanity.config.ts
 └── .env.local.example                 All required env vars
 ```
@@ -119,14 +108,13 @@ essynotes/
 
 ## Deployment
 
-Every git push to `main` auto-deploys to Vercel. Preview deploys for every PR.
+Every git push to `main` auto-deploys to Vercel.
 
-To deploy manually:
 ```bash
 npm run build   # test the production build locally
 ```
 
-Environment variables must be set in Vercel → Settings → Environment Variables for all three environments (Production, Preview, Development). Never commit `.env.local`.
+All env vars must be set in Vercel → Settings → Environment Variables for Production, Preview, and Development. Never commit `.env.local`.
 
 ---
 
@@ -134,7 +122,7 @@ Environment variables must be set in Vercel → Settings → Environment Variabl
 
 | Service | Free tier | When it costs |
 |---------|-----------|---------------|
-| Vercel | 100GB bandwidth, unlimited sites | ~$20/mo if Estera goes viral (>100k visits/mo) |
+| Vercel | 100GB bandwidth, unlimited sites | ~$20/mo past 100k visits/mo |
 | Sanity | 100k docs, 10GB bandwidth | ~$15/mo past that |
 | Lemon Squeezy | Free to join | 5% + $0.50 per sale |
 | Resend | 3,000 emails/month | $20/mo for 50k |
@@ -146,26 +134,10 @@ Environment variables must be set in Vercel → Settings → Environment Variabl
 
 ---
 
-## When you break something
+## Troubleshooting
 
-- **Build fails on Vercel** → check the build logs, 99% of the time it's a missing env var
-- **Sanity edits aren't appearing** → wait 60 seconds (ISR), then hard refresh
-- **Form not sending** → check Resend/Kit dashboards for errors, verify API keys in Vercel
+- **Build fails on Vercel** → check build logs, usually a missing env var
+- **Sanity edits not appearing** → wait 5 minutes (ISR), then hard refresh
+- **Form not sending** → check Resend/Kit dashboards, verify API keys in Vercel
 - **Checkout not opening** → check browser console, verify Lemon Squeezy script is loading
-- **Everything broken** → `git revert` the last commit, push, Vercel auto-redeploys in 30 seconds
-
----
-
-## Next features to consider
-
-Once the core site is live, natural next builds:
-- **Blog** (Sanity already has a `post` schema pattern — just add one)
-- **Individual product pages** (`/shop/[slug]`) with more detail, reviews, related items
-- **"Recent buyers" ticker** using Lemon Squeezy webhook data
-- **Pinterest-style video gallery** with native embed players
-- **Member area** for course buyers (Lemon Squeezy License Keys)
-- **i18n** (Romanian/English toggle, since Estera is Romanian-speaking)
-
----
-
-Made slowly, one component at a time.
+- **Everything broken** → `git revert HEAD`, push — Vercel redeploys in 30 seconds
