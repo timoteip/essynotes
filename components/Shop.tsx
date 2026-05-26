@@ -93,6 +93,7 @@ export default function Shop({ products }: { products: Product[] }) {
                 product={p}
                 gradient={gradients[i % gradients.length]}
                 onBuy={openCheckout}
+                priority={i === 0}
               />
             ))}
           </div>
@@ -106,10 +107,12 @@ function ProductCard({
   product,
   gradient,
   onBuy,
+  priority = false,
 }: {
   product: Product;
   gradient: string;
   onBuy: (url: string) => void;
+  priority?: boolean;
 }) {
   const images = product.images && product.images.length > 0 ? product.images : undefined;
   const [activeIdx, setActiveIdx] = useState(0);
@@ -139,6 +142,7 @@ function ProductCard({
             src={currentImage}
             alt={product.name}
             fill
+            priority={priority}
             className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
           />
