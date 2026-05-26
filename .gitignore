@@ -39,3 +39,8 @@ next-env.d.ts
 # sanity
 /dist
 /.sanity
+
+
+# lighthouse reports
+lighthouse-report.json
+lighthouse-report.html
