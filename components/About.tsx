@@ -35,7 +35,7 @@ export default function About({ bio }: AboutProps) {
                 </p>
               </div>
               <div className="absolute -bottom-4 -right-4 bg-brass text-ink px-5 py-4 font-display italic tracking-wide -rotate-3 shadow-[0_8px_20px_rgba(20,17,13,0.25)]">
-                <span className="eyebrow !text-cocoa">since</span>
+                <span className="eyebrow !text-ink">since</span>
                 <strong className="block text-[1.4rem] font-medium not-italic">
                   2022
                 </strong>

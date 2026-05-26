@@ -69,7 +69,7 @@ export default function Footer() {
         <div className="pt-6 flex justify-between items-end flex-wrap gap-4 font-display italic text-[0.85rem] opacity-60">
           <div className="flex flex-col gap-1">
             <div>© 2026 essynotes · made slowly, in a quiet room.</div>
-            <div className="text-[0.78rem] opacity-70">
+            <div className="text-[0.78rem]">
               Designed &amp; built by{" "}
               <Link
                 href="https://www.linkedin.com/in/timotei-perju/"
