@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import Reveal from "./Reveal";
 import type { Product } from "@/lib/types";
@@ -27,15 +27,29 @@ declare global {
 }
 
 export default function Shop({ products }: { products: Product[] }) {
+  const sectionRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    // Load Lemon Squeezy's overlay script once
-    if (document.getElementById("ls-script")) return;
-    const s = document.createElement("script");
-    s.id = "ls-script";
-    s.src = "https://assets.lemonsqueezy.com/lemon.js";
-    s.defer = true;
-    s.onload = () => window.createLemonSqueezy?.();
-    document.body.appendChild(s);
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        if (document.getElementById("ls-script")) return;
+        const s = document.createElement("script");
+        s.id = "ls-script";
+        s.src = "https://assets.lemonsqueezy.com/lemon.js";
+        s.defer = true;
+        s.onload = () => window.createLemonSqueezy?.();
+        document.body.appendChild(s);
+      },
+      { rootMargin: "200px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
   }, []);
 
   const openCheckout = (url: string) => {
@@ -45,6 +59,7 @@ export default function Shop({ products }: { products: Product[] }) {
   return (
     <section
       id="shop"
+      ref={sectionRef}
       className="relative py-24 md:py-36 overflow-hidden bg-forest-dark text-parchment"
     >
       {/* Ambient lighting */}
