@@ -144,7 +144,7 @@ function ProductCard({
             fill
             priority={priority}
             className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+            sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw"
           />
         ) : (
           <div className="absolute inset-0 flex items-end p-8">
