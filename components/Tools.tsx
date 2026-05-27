@@ -39,14 +39,14 @@ const tools = [
 
 export default function Tools() {
   return (
-    <section id="tools" className="py-24 md:py-36 bg-parchment">
+    <section id="links" className="py-24 md:py-36 bg-parchment">
       <div className="container-site">
         <Reveal>
           <div className="mb-16 flex flex-wrap items-end justify-between gap-8">
             <div>
               <span className="eyebrow">
                 <span className="rule-line" />
-                Tools I swear by
+                Links I swear by
               </span>
               <h2 className="mt-3 font-display font-light text-[clamp(2.8rem,5vw,4.2rem)] leading-none -tracking-tight">
                 What's <em className="italic text-forest">on the desk</em>.

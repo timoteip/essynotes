@@ -6,7 +6,7 @@ const cols = [
     links: [
       { label: "About", href: "/#about" },
       { label: "Shop", href: "/#shop" },
-      { label: "Tools", href: "/#tools" },
+      { label: "Links", href: "/#links" },
     ],
   },
   {
