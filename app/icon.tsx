@@ -25,6 +25,7 @@ export default function Icon() {
             fontFamily: "serif",
             fontStyle: "italic",
             lineHeight: 1,
+            transform: "translateY(-8%)",
           }}
         >
           e
