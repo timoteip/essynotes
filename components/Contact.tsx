@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Reveal from "./Reveal";
 
 export default function Contact() {
@@ -19,10 +19,13 @@ export default function Contact() {
 }
 
 function BrandInquiry() {
+  const [mounted, setMounted] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">(
     "idle"
   );
   const [msg, setMsg] = useState("");
+
+  useEffect(() => setMounted(true), []);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -114,11 +117,13 @@ function BrandInquiry() {
           placeholder="The more detail, the better."
         />
 
-        <div
-          className="cf-turnstile"
-          data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
-          data-theme="dark"
-        />
+        {mounted && (
+          <div
+            className="cf-turnstile"
+            data-sitekey={process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY}
+            data-theme="dark"
+          />
+        )}
 
         <button
           type="submit"
