@@ -158,6 +158,7 @@ function ProductCard({
             alt={product.name}
             fill
             priority={priority}
+            quality={80}
             className="object-cover group-hover:scale-[1.03] transition-transform duration-700"
             sizes="(max-width: 640px) 92vw, (max-width: 1024px) 46vw, 30vw"
           />

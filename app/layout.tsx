@@ -101,8 +101,8 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${cormorant.variable} ${ebGaramond.variable} ${italianno.variable}`}>
       <head>
-        <link rel="preconnect" href="https://assets.lemonsqueezy.com" />
-        <link rel="preconnect" href="https://cdn.lemonsqueezy.com" />
+        <link rel="dns-prefetch" href="https://assets.lemonsqueezy.com" />
+        <link rel="dns-prefetch" href="https://cdn.lemonsqueezy.com" />
       </head>
       <body>
         <Announce />
