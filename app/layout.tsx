@@ -64,6 +64,7 @@ export const metadata: Metadata = {
   ],
   robots: { index: true, follow: true },
   alternates: { canonical: "https://essynotes.com" },
+  verification: { google: "oiLssnsJ44AongsBZBwQy9CG_d5r269yBbewkL3932A" },
 };
 
 const jsonLd = {
