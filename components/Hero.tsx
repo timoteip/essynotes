@@ -43,7 +43,7 @@ export default function Hero({ followerCounts }: HeroProps) {
             <Link href="/#shop" className="btn btn-primary">
               Browse the Shop
             </Link>
-            <Link href="/#tools" className="btn btn-ghost">
+            <Link href="/#links" className="btn btn-ghost">
               My Links
             </Link>
           </div>
