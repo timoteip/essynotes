@@ -9,8 +9,8 @@ export default function Contact() {
       <div className="container-site">
         <Reveal>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Newsletter />
             <BrandInquiry />
+            <Newsletter />
           </div>
         </Reveal>
       </div>
