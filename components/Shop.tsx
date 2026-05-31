@@ -94,36 +94,23 @@ export default function Shop({ products }: { products: Product[] }) {
           </div>
         </Reveal>
 
-        {/* TEMP: LemonSqueezy checkout links broken — redirect to store directly */}
         <Reveal>
-          <div className="flex flex-col items-center text-center gap-8 py-8">
-            <p className="max-w-md font-body text-parchment/70 text-[1rem] leading-relaxed">
-              Browse all templates and printables in the full shop — pick what
-              speaks to you and check out directly there.
-            </p>
-            <a
-              href="https://essynotess.lemonsqueezy.com/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 font-display tracking-widest uppercase text-[0.85rem] bg-brass text-ink px-10 py-4 rounded-sm hover:bg-brass-light transition-colors duration-300 shadow-[0_4px_20px_rgba(176,138,80,0.25)] hover:shadow-[0_6px_28px_rgba(176,138,80,0.4)]"
-            >
-              Visit the Shop
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-              >
-                <path d="M7 7h10v10" />
-                <path d="M7 17 17 7" />
-              </svg>
-            </a>
+          <div className={`grid gap-8 ${
+            products.length === 1
+              ? "grid-cols-1 max-w-md mx-auto"
+              : products.length === 2
+              ? "grid-cols-1 sm:grid-cols-2 max-w-2xl mx-auto"
+              : "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+          }`}>
+            {products.map((p, i) => (
+              <ProductCard
+                key={p.id}
+                product={p}
+                gradient={gradients[i % gradients.length]}
+                onBuy={openCheckout}
+                priority={i === 0}
+              />
+            ))}
           </div>
         </Reveal>
       </div>
