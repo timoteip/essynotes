@@ -47,7 +47,12 @@ export default function Nav() {
           ))}
         </ul>
 
-        {/* Join the Letter button hidden while newsletter is temporarily disabled */}
+        <Link
+          href="/#newsletter"
+          className="hidden md:inline-flex font-display uppercase tracking-widest text-[0.8rem] px-5 py-2.5 rounded-sm bg-forest text-ivory hover:bg-ink transition-colors"
+        >
+          Join the Letter
+        </Link>
 
         <button
           className="md:hidden text-forest text-[1.8rem] leading-none px-1"
@@ -71,7 +76,13 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          {/* Join the Letter button hidden while newsletter is temporarily disabled */}
+          <Link
+            href="/#newsletter"
+            onClick={() => setIsOpen(false)}
+            className="mt-2 font-display uppercase tracking-widest text-[0.8rem] px-5 py-3 rounded-sm bg-forest text-ivory text-center hover:bg-ink transition-colors"
+          >
+            Join the Letter
+          </Link>
         </div>
       )}
     </nav>

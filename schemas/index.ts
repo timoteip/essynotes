@@ -17,7 +17,7 @@ const siteSettings = defineType({
 
 const link = defineType({
   name: "link",
-  title: "Link",
+  title: "Links",
   type: "document",
   fields: [
     defineField({ name: "name", title: "Name", type: "string" }),
@@ -33,4 +33,4 @@ const link = defineType({
   },
 });
 
-export const schemaTypes = [siteSettings, link];
+export const schemaTypes = [link];

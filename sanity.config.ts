@@ -5,8 +5,8 @@ import { schemaTypes } from "./schemas";
 export default defineConfig({
   name: "essynotes",
   title: "essynotes — studio",
-  projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ?? "",
-  dataset: process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production",
+  projectId: "ilkwq2nn",
+  dataset: "production",
   basePath: "/studio",
   plugins: [structureTool()],
   schema: { types: schemaTypes },
