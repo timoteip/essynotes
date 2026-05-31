@@ -138,14 +138,20 @@ function PageStack() {
       </div>
 
       {/* Page 3 — dark card */}
-      <div className="absolute w-[180px] h-[180px] bottom-7 left-20 -rotate-[3deg] bg-forest text-ivory p-6 z-[3] rounded-sm shadow-[0_2px_4px_rgba(61,42,27,0.12),0_20px_50px_rgba(20,17,13,0.25)] transition-transform duration-700 group-hover:-rotate-[1deg] group-hover:-translate-x-0.5 group-hover:-translate-y-1.5 paper-grain">
+      <a
+        href="https://amzn.to/3PQAfoU"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute w-[180px] h-[210px] bottom-7 left-20 -rotate-[3deg] bg-forest text-ivory p-6 z-[3] rounded-sm shadow-[0_2px_4px_rgba(61,42,27,0.12),0_20px_50px_rgba(20,17,13,0.25)] transition-transform duration-700 group-hover:-rotate-[1deg] group-hover:-translate-x-0.5 group-hover:-translate-y-1.5 paper-grain hover:brightness-110 flex flex-col justify-center"
+      >
         <div className="eyebrow !text-brass-light">Now writing with</div>
         <div className="font-display italic text-[2.2rem] mt-1.5 leading-[1.1]">
           Pilot
           <br />
           Kakuno
         </div>
-      </div>
+<div className="eyebrow !text-brass-light">Shop on Amazon →</div>
+      </a>
     </div>
   );
 }

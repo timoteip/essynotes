@@ -35,6 +35,14 @@ const tools = [
     href: "https://www.ellingtonpens.com/?sca_ref=9928678.XBz8aGz9tr",
     cta: "Shop Ellington",
   },
+  {
+    logo: "/icons/amazon.svg",
+    category: "Pens",
+    name: "Pilot Kakuno",
+    description: "The pen I'm writing with right now. Affordable, smooth, and surprisingly lovely to hold.",
+    href: "https://amzn.to/3PQAfoU",
+    cta: "Shop on Amazon",
+  },
 ];
 
 export default function Tools() {
