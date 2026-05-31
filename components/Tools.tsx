@@ -1,51 +1,17 @@
 import Link from "next/link";
 import Image from "next/image";
 import Reveal from "./Reveal";
+import type { SiteLink } from "@/lib/types";
 
-const tools = [
-  {
-    logo: "/icons/amazon.svg",
-    category: "Shopping",
-    name: "Amazon Storefront",
-    description: "All my favourite pens, notebooks, and desk essentials in one place.",
-    href: "https://www.amazon.com/shop/essynotes?ref_=cm_sw_r_cp_ud_aipsfshop_aipsfessynotes_PMVEWM85F80EMG5TPP35",
-    cta: "Visit Storefront",
-  },
-  {
-    logo: "/icons/etsy.svg",
-    category: "Templates",
-    name: "Etsy — Templates",
-    description: "Printable and digital journaling templates designed for slow, intentional pages.",
-    href: "https://www.etsy.com/shop/EssyNotes",
-    cta: "Shop Templates",
-  },
-  {
-    logo: "/icons/goldencoil.png",
-    category: "Notebooks",
-    name: "Golden Coil",
-    description: "Fully customisable notebooks and planners — the ones I write in every single day.",
-    href: "https://www.avantlink.com/click.php?tool_type=cl&merchant_id=c8f278e0-ea2a-4c50-a6c2-20684bc9eb36&website_id=c81bf3d2-ef25-45cf-bb14-c6f8d27d4fdd&url=https%3A%2F%2Fwww.goldencoil.com",
-    cta: "Shop Golden Coil",
-  },
-  {
-    logo: "/icons/ellington.webp",
-    category: "Pens",
-    name: "Ellington Pens",
-    description: "Beautiful, well-crafted pens worth writing home about. My go-to for gifting.",
-    href: "https://www.ellingtonpens.com/?sca_ref=9928678.XBz8aGz9tr",
-    cta: "Shop Ellington",
-  },
-  {
-    logo: "/icons/amazon.svg",
-    category: "Pens",
-    name: "Pilot Kakuno",
-    description: "The pen I'm writing with right now. Affordable, smooth, and surprisingly lovely to hold.",
-    href: "https://amzn.to/3PQAfoU",
-    cta: "Shop on Amazon",
-  },
-];
+const LOCAL_LOGOS: Record<string, string> = {
+  "Amazon Storefront": "/icons/amazon.svg",
+  "Pilot Kakuno": "/icons/amazon.svg",
+  "Etsy — Templates": "/icons/etsy.svg",
+  "Golden Coil": "/icons/goldencoil.png",
+  "Ellington Pens": "/icons/ellington.webp",
+};
 
-export default function Tools() {
+export default function Tools({ links }: { links: SiteLink[] }) {
   return (
     <section id="links" className="py-24 md:py-36 bg-parchment">
       <div className="container-site">
@@ -69,20 +35,22 @@ export default function Tools() {
 
         <Reveal>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {tools.map((t) => (
+            {links.map((t) => (
               <div
-                key={t.name}
+                key={t._id}
                 className="group bg-ivory p-8 rounded-sm border border-cocoa/10 hover:border-brass hover:-translate-y-1 hover:shadow-[0_20px_40px_rgba(20,17,13,0.12)] transition-all duration-400 flex flex-col"
               >
                 <div className="h-[48px] flex items-center mb-6">
-                  <Image
-                    src={t.logo}
-                    alt={t.name}
-                    width={120}
-                    height={48}
-                    className="object-contain object-left max-w-[140px]"
-                    style={{ width: "auto", height: "48px" }}
-                  />
+                  {(t.logoUrl ?? LOCAL_LOGOS[t.name]) && (
+                    <Image
+                      src={t.logoUrl ?? LOCAL_LOGOS[t.name]}
+                      alt={t.name}
+                      width={120}
+                      height={48}
+                      className="object-contain object-left max-w-[140px]"
+                      style={{ width: "auto", height: "48px" }}
+                    />
+                  )}
                 </div>
                 <span className="font-display italic text-[0.75rem] tracking-widest uppercase text-moss">
                   {t.category}

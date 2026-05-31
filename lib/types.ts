@@ -11,6 +11,16 @@ export type Product = {
   images?: string[];
 };
 
+export type SiteLink = {
+  _id: string;
+  name: string;
+  category: string;
+  description: string;
+  href: string;
+  cta: string;
+  logoUrl?: string;
+};
+
 export type SiteSettings = {
   announceBar?: string;
   bioShort?: string;

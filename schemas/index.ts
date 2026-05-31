@@ -15,4 +15,22 @@ const siteSettings = defineType({
   ],
 });
 
-export const schemaTypes = [siteSettings];
+const link = defineType({
+  name: "link",
+  title: "Link",
+  type: "document",
+  fields: [
+    defineField({ name: "name", title: "Name", type: "string" }),
+    defineField({ name: "category", title: "Category (e.g. Pens, Notebooks)", type: "string" }),
+    defineField({ name: "description", title: "Description", type: "text" }),
+    defineField({ name: "href", title: "URL", type: "url" }),
+    defineField({ name: "cta", title: "Button Label (e.g. Shop on Amazon)", type: "string" }),
+    defineField({ name: "logo", title: "Logo", type: "image" }),
+    defineField({ name: "order", title: "Order (lower = first)", type: "number" }),
+  ],
+  preview: {
+    select: { title: "name", subtitle: "category" },
+  },
+});
+
+export const schemaTypes = [siteSettings, link];

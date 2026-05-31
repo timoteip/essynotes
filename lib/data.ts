@@ -1,5 +1,5 @@
 import { sanityClient } from "./sanity";
-import type { Product, SiteSettings } from "./types";
+import type { Product, SiteLink, SiteSettings } from "./types";
 
 // ───────────────────────────────────────
 // SITE SETTINGS (Sanity)
@@ -19,6 +19,31 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   } catch (err) {
     console.error("Sanity getSiteSettings error:", err);
     return MOCK_SITE_SETTINGS;
+  }
+}
+
+// ───────────────────────────────────────
+// LINKS (Sanity)
+// ───────────────────────────────────────
+export async function getLinks(): Promise<SiteLink[]> {
+  if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) return MOCK_LINKS;
+
+  try {
+    if (!sanityClient) return MOCK_LINKS;
+    const query = `*[_type == "link"] | order(order asc) {
+      _id,
+      name,
+      category,
+      description,
+      href,
+      cta,
+      "logoUrl": logo.asset->url
+    }`;
+    const result = await sanityClient.fetch<SiteLink[]>(query);
+    return result?.length ? result : MOCK_LINKS;
+  } catch (err) {
+    console.error("Sanity getLinks error:", err);
+    return MOCK_LINKS;
   }
 }
 
@@ -86,6 +111,54 @@ const MOCK_SITE_SETTINGS: SiteSettings = {
     "I started essynotes in a small room with a stack of lined paper and a pen that leaked just enough to be charming. What began as a quiet journal became a corner of the internet where hundreds of thousands of people now come to slow down, write better, and find some stillness between the screens.",
   followerCounts: { tiktok: "243K", instagram: "52K", youtube: "22K" },
 };
+
+const MOCK_LINKS: SiteLink[] = [
+  {
+    _id: "l1",
+    logoUrl: "/icons/amazon.svg",
+    category: "Shopping",
+    name: "Amazon Storefront",
+    description: "All my favourite pens, notebooks, and desk essentials in one place.",
+    href: "https://www.amazon.com/shop/essynotes?ref_=cm_sw_r_cp_ud_aipsfshop_aipsfessynotes_PMVEWM85F80EMG5TPP35",
+    cta: "Visit Storefront",
+  },
+  {
+    _id: "l2",
+    logoUrl: "/icons/etsy.svg",
+    category: "Templates",
+    name: "Etsy — Templates",
+    description: "Printable and digital journaling templates designed for slow, intentional pages.",
+    href: "https://www.etsy.com/shop/EssyNotes",
+    cta: "Shop Templates",
+  },
+  {
+    _id: "l3",
+    logoUrl: "/icons/goldencoil.png",
+    category: "Notebooks",
+    name: "Golden Coil",
+    description: "Fully customisable notebooks and planners — the ones I write in every single day.",
+    href: "https://www.avantlink.com/click.php?tool_type=cl&merchant_id=c8f278e0-ea2a-4c50-a6c2-20684bc9eb36&website_id=c81bf3d2-ef25-45cf-bb14-c6f8d27d4fdd&url=https%3A%2F%2Fwww.goldencoil.com",
+    cta: "Shop Golden Coil",
+  },
+  {
+    _id: "l4",
+    logoUrl: "/icons/ellington.webp",
+    category: "Pens",
+    name: "Ellington Pens",
+    description: "Beautiful, well-crafted pens worth writing home about. My go-to for gifting.",
+    href: "https://www.ellingtonpens.com/?sca_ref=9928678.XBz8aGz9tr",
+    cta: "Shop Ellington",
+  },
+  {
+    _id: "l5",
+    logoUrl: "/icons/amazon.svg",
+    category: "Pens",
+    name: "Pilot Kakuno",
+    description: "The pen I'm writing with right now. Affordable, smooth, and surprisingly lovely to hold.",
+    href: "https://amzn.to/3PQAfoU",
+    cta: "Shop on Amazon",
+  },
+];
 
 const MOCK_PRODUCTS: Product[] = [
   { id: "1", name: "The Handwriting Starter", category: "Workbook · 48 pages", description: "From messy scrawl to steady lines in twenty-eight days. Printable, rewritable, made to be returned to.", priceDollars: 14, priceCents: 0, checkoutUrl: "#", badge: "Best Seller" },
