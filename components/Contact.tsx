@@ -8,9 +8,10 @@ export default function Contact() {
     <section id="contact" className="py-24 md:py-36 bg-ivory">
       <div className="container-site">
         <Reveal>
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="max-w-xl mx-auto w-full">
             <BrandInquiry />
-            <Newsletter />
+            {/* Newsletter — hidden until ready */}
+            {/* <Newsletter /> */}
           </div>
         </Reveal>
       </div>
