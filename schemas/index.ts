@@ -13,7 +13,7 @@ const siteSettings = defineType({
   ],
   preview: {
     prepare() {
-      return { title: "Instagram, TikTok, YouTube followers count" };
+      return { title: "Instagram, TikTok, YouTube follower counts" };
     },
   },
 });
