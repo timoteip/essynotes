@@ -4,9 +4,6 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Cormorant_Garamond, EB_Garamond, Italianno } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
-import Announce from "@/components/Announce";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -105,10 +102,7 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="https://cdn.lemonsqueezy.com" />
       </head>
       <body>
-        <Announce />
-        <Nav />
-        <main>{children}</main>
-        <Footer />
+        {children}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
