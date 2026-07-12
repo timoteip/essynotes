@@ -13,6 +13,11 @@ const siteSettings = defineType({
       { name: "youtube", type: "string" },
     ] }),
   ],
+  preview: {
+    prepare() {
+      return { title: "Instagram, TikTok, YouTube followers count" };
+    },
+  },
 });
 
 const link = defineType({
