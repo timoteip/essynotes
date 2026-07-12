@@ -109,7 +109,7 @@ const MOCK_SITE_SETTINGS: SiteSettings = {
     "New handwriting starter kit just dropped ✦ free shipping on orders over $40 ✦ welcome to the desk",
   bioShort:
     "I started essynotes in a small room with a stack of lined paper and a pen that leaked just enough to be charming. What began as a quiet journal became a corner of the internet where hundreds of thousands of people now come to slow down, write better, and find some stillness between the screens.",
-  followerCounts: { tiktok: "243K", instagram: "52K", youtube: "22K" },
+  followerCounts: { tiktok: "243K", instagram: "100K", youtube: "22K" },
 };
 
 const MOCK_LINKS: SiteLink[] = [
