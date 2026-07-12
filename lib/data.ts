@@ -10,8 +10,6 @@ export async function getSiteSettings(): Promise<SiteSettings> {
   try {
     if (!sanityClient) return MOCK_SITE_SETTINGS;
     const query = `*[_type == "siteSettings"][0]{
-      announceBar,
-      bioShort,
       followerCounts
     }`;
     const result = await sanityClient.fetch<SiteSettings | null>(query);
@@ -105,10 +103,6 @@ function stripHtml(html: string) {
 // MOCK DATA — used until Sanity/LS are wired up
 // ───────────────────────────────────────
 const MOCK_SITE_SETTINGS: SiteSettings = {
-  announceBar:
-    "New handwriting starter kit just dropped ✦ free shipping on orders over $40 ✦ welcome to the desk",
-  bioShort:
-    "I started essynotes in a small room with a stack of lined paper and a pen that leaked just enough to be charming. What began as a quiet journal became a corner of the internet where hundreds of thousands of people now come to slow down, write better, and find some stillness between the screens.",
   followerCounts: { tiktok: "243K", instagram: "100K", youtube: "22K" },
 };
 

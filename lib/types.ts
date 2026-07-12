@@ -22,8 +22,6 @@ export type SiteLink = {
 };
 
 export type SiteSettings = {
-  announceBar?: string;
-  bioShort?: string;
   followerCounts?: {
     tiktok?: string;
     instagram?: string;
