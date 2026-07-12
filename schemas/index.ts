@@ -33,4 +33,4 @@ const link = defineType({
   },
 });
 
-export const schemaTypes = [link];
+export const schemaTypes = [link, siteSettings];
