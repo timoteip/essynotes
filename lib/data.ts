@@ -122,7 +122,7 @@ const MOCK_LINKS: SiteLink[] = [
     category: "Templates",
     name: "Etsy — Templates",
     description: "Printable and digital journaling templates designed for slow, intentional pages.",
-    href: "https://www.etsy.com/shop/EssyNotes",
+    href: "https://essynotes.etsy.com",
     cta: "Shop Templates",
   },
   {
