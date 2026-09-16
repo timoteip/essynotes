@@ -114,6 +114,8 @@ function BrandInquiry() {
           name="message"
           label="Tell me about it"
           textarea
+          required
+          minLength={20}
           placeholder="The more detail, the better."
         />
 
@@ -250,6 +252,7 @@ function Field({
   type = "text",
   textarea = false,
   required = false,
+  minLength,
   placeholder,
   variant = "dark",
 }: {
@@ -258,6 +261,7 @@ function Field({
   type?: string;
   textarea?: boolean;
   required?: boolean;
+  minLength?: number;
   placeholder?: string;
   variant?: "dark" | "light";
 }) {
@@ -277,6 +281,7 @@ function Field({
           id={name}
           name={name}
           required={required}
+          minLength={minLength}
           placeholder={placeholder}
           className={`${cls} resize-y min-h-[110px]`}
         />
@@ -286,6 +291,7 @@ function Field({
           name={name}
           type={type}
           required={required}
+          minLength={minLength}
           placeholder={placeholder}
           className={cls}
         />

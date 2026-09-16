@@ -9,7 +9,7 @@ export async function POST(req: Request) {
     const { name, brand, email, type, message, turnstileToken } = body;
 
     // Basic validation
-    if (!name || !email) {
+    if (!name || !email || !message?.trim()) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
     }
 
@@ -49,7 +49,7 @@ export async function POST(req: Request) {
         brand && `Brand: ${brand}`,
         type && `Type: ${type}`,
         "",
-        message ?? "(no message)",
+        message,
       ]
         .filter(Boolean)
         .join("\n"),
