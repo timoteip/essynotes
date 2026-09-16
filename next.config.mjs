@@ -6,6 +6,13 @@ const nextConfig = {
       { protocol: "https", hostname: "*.lemonsqueezy.com" },
     ],
   },
+  async redirects() {
+    return [
+      { source: "/links", destination: "/#links", permanent: false },
+      { source: "/contact", destination: "/#contact", permanent: false },
+      { source: "/pages/contact", destination: "/#contact", permanent: false },
+    ];
+  },
 };
 
 export default nextConfig;
