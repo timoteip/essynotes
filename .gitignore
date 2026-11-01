@@ -44,3 +44,6 @@ next-env.d.ts
 # lighthouse reports
 lighthouse-report.json
 lighthouse-report.html
+
+# personal workflow notes
+conventions.md
