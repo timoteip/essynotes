@@ -6,11 +6,20 @@ export const runtime = "edge";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    const { name, brand, email, type, message, turnstileToken } = body;
+    const { name, brand, email, type, message, turnstileToken, website } = body;
 
-    // Basic validation
-    if (!name || !email || !message?.trim()) {
-      return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
+    // Honeypot — hidden field only bots fill; pretend success so they move on
+    if (website) return NextResponse.json({ ok: true });
+
+    // Basic validation (enforced here too — client checks are bypassable)
+    if (
+      !name ||
+      !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email ?? "") ||
+      (message?.trim().length ?? 0) < 60 ||
+      message.length > 5000 ||
+      /https?:\/\/[\s\S]*https?:\/\//i.test(message)
+    ) {
+      return NextResponse.json({ error: "Invalid fields" }, { status: 400 });
     }
 
     // Anti-spam — Turnstile (required when secret key is configured)
@@ -23,11 +32,15 @@ export async function POST(req: Request) {
         {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: `secret=${process.env.TURNSTILE_SECRET_KEY}&response=${turnstileToken}`,
+          body: new URLSearchParams({
+            secret: process.env.TURNSTILE_SECRET_KEY,
+            response: String(turnstileToken),
+          }),
         }
       );
       const verifyJson = await verify.json();
       if (!verifyJson.success) {
+        console.error("Turnstile verify failed:", verifyJson["error-codes"]);
         return NextResponse.json({ error: "Spam check failed" }, { status: 403 });
       }
     }

@@ -89,10 +89,17 @@ function BrandInquiry() {
 
       <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field name="name" label="Name" required />
-          <Field name="brand" label="Brand" />
+          <Field idPrefix="inquiry" name="name" label="Name" required />
+          <Field idPrefix="inquiry" name="brand" label="Brand" />
         </div>
-        <Field name="email" label="Email" type="email" required />
+        <Field idPrefix="inquiry" name="email" label="Email" type="email" required />
+        <input
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="hidden"
+        />
         <div className="flex flex-col gap-1.5">
           <label htmlFor="collab-type" className="font-display italic text-[0.85rem] tracking-wider uppercase opacity-80">
             Collaboration type
@@ -111,11 +118,12 @@ function BrandInquiry() {
           </select>
         </div>
         <Field
+          idPrefix="inquiry"
           name="message"
           label="Tell me about it"
           textarea
           required
-          minLength={20}
+          minLength={60}
           placeholder="The more detail, the better."
         />
 
@@ -220,6 +228,7 @@ function Newsletter() {
 
       <form onSubmit={onSubmit} className="mt-8 flex flex-col gap-4">
         <Field
+          idPrefix="news"
           name="name"
           label="Your name"
           placeholder="— so I can address the letter"
@@ -227,6 +236,7 @@ function Newsletter() {
           variant="light"
         />
         <Field
+          idPrefix="news"
           name="email"
           label="Email"
           type="email"
@@ -255,7 +265,9 @@ function Field({
   minLength,
   placeholder,
   variant = "dark",
+  idPrefix,
 }: {
+  idPrefix: string;
   name: string;
   label: string;
   type?: string;
@@ -273,12 +285,12 @@ function Field({
 
   return (
     <div className="flex flex-col gap-1.5">
-      <label htmlFor={name} className="font-display italic text-[0.85rem] tracking-wider uppercase opacity-80">
+      <label htmlFor={`${idPrefix}-${name}`} className="font-display italic text-[0.85rem] tracking-wider uppercase opacity-80">
         {label}
       </label>
       {textarea ? (
         <textarea
-          id={name}
+          id={`${idPrefix}-${name}`}
           name={name}
           required={required}
           minLength={minLength}
@@ -287,7 +299,7 @@ function Field({
         />
       ) : (
         <input
-          id={name}
+          id={`${idPrefix}-${name}`}
           name={name}
           type={type}
           required={required}
